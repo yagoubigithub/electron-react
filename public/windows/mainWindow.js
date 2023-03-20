@@ -43,11 +43,11 @@ if (!app.isPackaged) {
 
 //mainWindow.webContents.openDevTools();
 
-//if the user click the cllose btn we close all app
-mainWindow.on("close", (e) => {
+// //if the user click the cllose btn we close all app
+// mainWindow.on("close", (e) => {
 
-    if (process.platform !== 'darwin') app.quit()
-});
+//     if (process.platform !== 'darwin') app.quit()
+// });
 
 
 module.exports = mainWindow;

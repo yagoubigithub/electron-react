@@ -34,13 +34,13 @@
       "buildResources": "public"
     },
     "win": {
-      "icon": "public/img/logo-win.png",
+      "icon": "public/img/icon.png",
       "target": [
         "nsis"
       ]
     },
     "mac": {
-      "icon": "public/img/logo-mac.icns"
+      "icon": "public/img/icon.icns"
     },
     "nsis": {
       "oneClick": false,
@@ -52,7 +52,7 @@
       "displayLanguageSelector": false
     },
     "linux": {
-      "icon": "public/img/logo-linux.icns",
+      "icon": "public/img/icon.png",
       "target": [
         "AppImage"
       ],
