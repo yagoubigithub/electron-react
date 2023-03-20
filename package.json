@@ -2,20 +2,96 @@
   "name": "electron-react",
   "version": "0.1.0",
   "private": true,
+  "author": "yagoubi abdelkader <yagoubi.aek.2@gmail.com>",
+  "main": "./public/electron.js",
+  "homepage": "./",
+  "build": {
+    
+    "appId": "com.electron.react",
+   
+    "files": [
+     
+      "build/**/*",
+      "node_modules/**/*",
+      {
+        "from": "build",
+        "to": "build",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "extraResources": [
+      {
+        "from": "build",
+        "to": "build",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "directories": {
+      "buildResources": "public"
+    },
+    "win": {
+      "icon": "public/img/logo-win.png",
+      "target": [
+        "nsis"
+      ]
+    },
+    "mac": {
+      "icon": "public/img/logo-mac.icns"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "deleteAppDataOnUninstall": true,
+      "uninstallDisplayName": "electronreact",
+      "license": "license.txt",
+      "language": 1033,
+      "displayLanguageSelector": false
+    },
+    "linux": {
+      "icon": "public/img/logo-linux.icns",
+      "target": [
+        "AppImage"
+      ],
+      "category": "Development"
+    },
+    "deb": {
+      "depends": [
+        "gconf2",
+        "gconf-service",
+        "libnotify4",
+        "libappindicator1",
+        "libxtst6",
+        "libnss3"
+      ],
+      "compression": "gz"
+    },
+    "productName": "electronreact",
+    "copyright": "yagoubi abdelkader"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "6",
     "react-scripts": "5.0.1",
+    "wait-on": "^7.0.1",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "electron-build": "electron-builder ",
+    "build": " yarn react-build &&   yarn electron-build",
+    "start": " concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron . --dev  \"",
+    "lint": "eslint ."
   },
   "eslintConfig": {
     "extends": [
@@ -25,14 +101,15 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "last 1 electron version"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 electron version"
     ]
+  },
+  "devDependencies": {
+    "electron": "16",
+    "electron-builder": "^23.6.0",
+    "electron-devtools-installer": "^3.2.0"
   }
 }
